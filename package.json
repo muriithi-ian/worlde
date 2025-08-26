@@ -1,0 +1,8 @@
+{
+  "name": "wordle-assignment",
+  "private": true,
+  "workspaces": [
+    "packages/client",
+    "packages/server"
+  ]
+}
