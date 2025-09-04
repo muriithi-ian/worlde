@@ -3,39 +3,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import GameBoard from '@/components/GameBoard';
+import { Feedback, MAX_ROUNDS } from '@/components/constants';
 
-const MAX_ROUNDS = 6;
-type TileState = 'hit' | 'present' | 'miss';
-type Feedback = TileState[];
 
-// --- Reusable Game Board Component ---
-// This is a stateless component that just renders the board based on props.
-const GameBoard = ({ title, guesses, feedback }: { title: string; guesses: string[]; feedback: Feedback[] }) => {
-    const getTileClass = (state?: TileState) => {
-        if (!state) return 'border-gray-600';
-        return { hit: 'bg-green-500', present: 'bg-yellow-500', miss: 'bg-gray-700' }[state];
-    };
-
-    return (
-        <div>
-            <h2 className="text-xl text-center mb-2">{title}</h2>
-            <div className="grid grid-rows-6 gap-1.5">
-                {Array.from({ length: MAX_ROUNDS }).map((_, rowIndex) => (
-                    <div key={rowIndex} className="grid grid-cols-5 gap-1.5">
-                        {Array.from({ length: 5 }).map((_, colIndex) => (
-                            <div
-                                key={colIndex}
-                                className={`w-14 h-14 border-2 flex items-center justify-center text-2xl font-bold ${getTileClass(feedback[rowIndex]?.[colIndex])}`}
-                            >
-                                {guesses[rowIndex]?.[colIndex] ?? ''}
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
 
 // --- Main Hotseat Game Page Component ---
 export default function HotseatPage() {
@@ -52,7 +23,7 @@ export default function HotseatPage() {
         gameOver: { isOver: false, message: '' },
     });
 
-    // Helper function to calculate feedback. Copied from the server logic.
+    // Helper function to calculate feedback.
     const calculateFeedback = (guess: string, target: string): Feedback => {
         const results: Feedback = Array(5).fill('miss');
         const guessChars = guess.split('');

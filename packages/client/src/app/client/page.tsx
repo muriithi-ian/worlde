@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
-const MAX_ROUNDS = 6;
+import { MAX_ROUNDS } from '@/components/constants';
 
 export default function Home() {
   const [wordList, setWordList] = useState<string[]>([]);
