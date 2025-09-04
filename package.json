@@ -4,5 +4,9 @@
   "workspaces": [
     "packages/client",
     "packages/server"
-  ]
+  ],
+  "scripts": {
+    "install": "npm install --prefix packages/client && npm install --prefix packages/server",
+    "start": "npx concurrently \"npm run dev --prefix packages/client\" \"ts-node packages/server/src/index.ts\""
+  }
 }

@@ -12,6 +12,9 @@ export default function StartPage() {
         <Link href="/server" className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded text-center text-xl">
             Play Server-Side
         </Link>
+         <Link href="/hard" className="px-6 py-3 bg-red-600 hover:bg-red-700 rounded text-center text-xl">
+            Play Server-Side (Difficult Host)
+        </Link>
       </div>
     </main>
   );
